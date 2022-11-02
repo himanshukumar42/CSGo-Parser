@@ -42,13 +42,13 @@ func main() {
 		fmt.Println("------------------------------------")
 	})
 
-	//p.RegisterEventHandler(func(e events.Kill) {
-	//	if e.IsHeadshot {
-	//		fmt.Printf("\n%s player killed %v with Weapon %v by Headshot from a distance of %f\n", e.Killer, e.Victim, e.Weapon, e.Distance)
-	//	} else {
-	//		fmt.Printf("\n%s player killed %v with Weapon %v from a distance of %f\n", e.Killer, e.Victim, e.Weapon, e.Distance)
-	//	}
-	//})
+	p.RegisterEventHandler(func(e events.Kill) {
+		if e.IsHeadshot {
+			fmt.Printf("\n%s player killed %v with Weapon %v by Headshot from a distance of %f\n", e.Killer, e.Victim, e.Weapon, e.Distance)
+		} else {
+			fmt.Printf("\n%s player killed %v with Weapon %v from a distance of %f\n", e.Killer, e.Victim, e.Weapon, e.Distance)
+		}
+	})
 
 	err = p.ParseToEnd()
 	if err != nil {
