@@ -16,20 +16,25 @@ func main() {
 	}
 
 	p := dem.NewParser(f)
-	defer p.Close()
+	defer func(p dem.Parser) {
+		err := p.Close()
+		if err != nil {
+			log.Panic("failed to close parser", err)
+		}
+	}(p)
 
 	p.RegisterEventHandler(func(start events.MatchStart) {
 		fmt.Println("------------------------------------")
 
-		fmt.Println("List of all Players")
+		fmt.Println("List of all Players:- ")
 		allPlayers := p.GameState().Participants().All()
-		fmt.Println("No of Players in the Game", len(allPlayers))
+		fmt.Println("No of Players in the Game:- ", len(allPlayers))
 		for _, pl := range allPlayers {
 			fmt.Println(pl.Name)
 		}
 		allParticipants := p.GameState().Participants().Playing()
-		fmt.Println("No of Players playing and Participating the Game", len(allParticipants))
-		fmt.Println("List of Players Participating and Playing the Game")
+		fmt.Println("No of Players playing and Participating the Game:- ", len(allParticipants))
+		fmt.Println("List of Players Participating and Playing the Game:- ")
 		for _, pm := range allParticipants {
 			fmt.Println(pm.Name)
 		}
