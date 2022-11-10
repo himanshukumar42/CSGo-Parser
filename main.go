@@ -1,16 +1,39 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"log"
-	"os"
-
 	dem "github.com/markus-wa/demoinfocs-golang/v3/pkg/demoinfocs"
 	"github.com/markus-wa/demoinfocs-golang/v3/pkg/demoinfocs/events"
+	"io/fs"
+	"log"
+	"os"
+	"path/filepath"
+	"sync"
 )
 
-func main() {
-	f, err := os.Open("tv_demo1.dem")
+func readFiles(directory string) []string {
+	fileList := make([]string, 0)
+	err := filepath.Walk(directory, func(path string, info fs.FileInfo, err error) error {
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		if !info.IsDir() {
+			fileList = append(fileList, path)
+		}
+		return nil
+	})
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return fileList
+}
+
+func parseFiles(filename string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	fmt.Println(filename)
+	f, err := os.Open(filename)
 	if err != nil {
 		log.Panic("failed to open demo file: ", err)
 	}
@@ -57,6 +80,40 @@ func main() {
 
 	err = p.ParseToEnd()
 	if err != nil {
-		log.Panic("failed to parse demo: ", err)
+		log.Println("++++++++++++++++++++++ [INFO] ++++++++++++++++")
+		log.Println("SKipping file", filename)
 	}
+}
+
+func fileContent() {
+	fmt.Println("Reached here")
+	f, err := os.Open("tv_demo1.dem")
+	if err != nil {
+		log.Panic("failed to open demo file: ", err)
+	}
+	fmt.Println(f)
+
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatalln(err)
+	}
+}
+func main() {
+	//myDir, err := os.Getwd()
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//directoryPath := filepath.Join(myDir, "tmp")
+	//fileList := readFiles(directoryPath)
+	//
+	//var wg sync.WaitGroup
+	//for _, file := range fileList {
+	//	wg.Add(1)
+	//	go parseFiles(file, &wg)
+	//}
+	//wg.Wait()
+	fileContent()
 }
