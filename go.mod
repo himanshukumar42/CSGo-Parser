@@ -12,7 +12,9 @@ require (
 	github.com/Olament/HLTV-Go v0.2.1 // indirect
 	github.com/PuerkitoBio/goquery v1.5.0 // indirect
 	github.com/andybalholm/cascadia v1.0.0 // indirect
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/google/go-querystring v1.0.0 // indirect
+	github.com/llgcode/draw2d v0.0.0-20210904075650-80aa0a2a901d // indirect
 	github.com/markus-wa/go-unassert v0.1.2 // indirect
 	github.com/markus-wa/gobitread v0.2.3 // indirect
 	github.com/markus-wa/godispatch v1.4.1 // indirect
@@ -22,6 +24,7 @@ require (
 	github.com/tidwall/gjson v1.3.5 // indirect
 	github.com/tidwall/match v1.0.1 // indirect
 	github.com/tidwall/pretty v1.0.0 // indirect
+	golang.org/x/image v0.0.0-20220617043117-41969df76e82 // indirect
 	golang.org/x/net v0.0.0-20181114220301-adae6a3d119a // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
