@@ -8,6 +8,7 @@
 .idea
 .DS_Store
 tmp/
+*.csv
 .gitconfig.personal
 .env
 # Test binary, built with `go test -c`
