@@ -26,7 +26,7 @@ const (
 // Run like this: go run heatmap.go -demo /path/to/demo.dem >out.jpg
 func main() {
 
-	f, err := os.Open("tmp/fnatic-vs-havu-m2-nuke.dem")
+	f, err := os.Open("tmp/1662024657.dem")
 	if err != nil {
 		log.Fatalln("Hello Open FIle", err)
 	}

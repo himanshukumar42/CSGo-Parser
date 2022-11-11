@@ -101,6 +101,7 @@ func fileContent() {
 		log.Fatalln(err)
 	}
 }
+
 func main() {
 	//myDir, err := os.Getwd()
 	//if err != nil {
@@ -115,5 +116,10 @@ func main() {
 	//	go parseFiles(file, &wg)
 	//}
 	//wg.Wait()
-	fileContent()
+	//fileContent()
+
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+	go parseFiles("tv_demo1.dem", &wg)
+	wg.Wait()
 }
