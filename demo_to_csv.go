@@ -248,9 +248,9 @@ func getMapCRCCode(filename string) {
 }
 func main() {
 	//csvToDemo("tmp/1662024657.dem")
-	//eventsByFrame("tmp/1662024657.dem")
+	eventsByFrame("tmp/1662024657.dem")
 	//testHLTV()
 	//demoHeader("tmp/1662024657.dem")
-	getMapCRCCode("tmp/1662024657.dem")
+	//getMapCRCCode("tmp/1662024657.dem")
 
 }
